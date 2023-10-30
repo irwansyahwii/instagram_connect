@@ -10,11 +10,13 @@ class InstagramConstant {
 // FACEBOOK_CLIENT_ID=856380469125896
 // FACEBOOK_CLIENT_SECRET=25598d275806cf2d02a1402b76b8ebd5
 
+  String accessToken = "";
+
   static const String clientID = '285408154408759'; //'718353975697969';
   static const String appSecret =  'a5baf227c1f23784be51c7e1a20c5e3e'; //'5497481e4a4ab34ae4fc2eeb4e6b7dba';
   static const String redirectUri = 'https://pi3wrvhm6e.ap-southeast-1.awsapprunner.com/';//'https://cpeqah8x3a.ap-southeast-1.awsapprunner.com/'; //'https://www.ekspar.com.tr/';
   static const String scope = 'user_profile,user_media';
   static const String responseType = 'code';
   final String url =
-      'https://api.instagram.com/oauth/authorize?client_id=$clientID&redirect_uri=$redirectUri&scope=user_profile,user_media&response_type=$responseType';
+      'https://pi3wrvhm6e.ap-southeast-1.awsapprunner.com/auth/facebook';
 }
