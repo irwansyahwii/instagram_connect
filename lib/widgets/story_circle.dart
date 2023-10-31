@@ -1,13 +1,21 @@
 import 'package:dashed_circle/dashed_circle.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 
 class StoryCircle extends StatefulWidget {
-  @override
-  _StoryCircleState createState() => _StoryCircleState();
+  final String url;
+
+  const StoryCircle({super.key,
+    required this.url
+    });
+    
+      @override
+      State<StatefulWidget> createState() => _StoryCircleState();
+
+  
 }
 
-class _StoryCircleState extends State with SingleTickerProviderStateMixin {
+class _StoryCircleState extends State<StoryCircle> with SingleTickerProviderStateMixin {
   /// Variables
   late Animation gap;
   late Animation<double> base;
@@ -18,7 +26,7 @@ class _StoryCircleState extends State with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(vsync: this, duration: Duration(seconds: 4));
+    controller = AnimationController(vsync: this, duration: const Duration(seconds: 4));
     base = CurvedAnimation(parent: controller, curve: Curves.easeOut);
     reverse = Tween(begin: 0.0, end: -1.0).animate(base);
     gap = Tween(begin: 3.0, end: 0.0).animate(base)
@@ -53,9 +61,8 @@ class _StoryCircleState extends State with SingleTickerProviderStateMixin {
                 padding: const EdgeInsets.all(5.0),
                 child: CircleAvatar(                  
                   radius: 80.0,
-                  backgroundImage: NetworkImage(
-                    
-                    "https://images.unsplash.com/photo-1564564295391-7f24f26f568b"
+                  backgroundImage: NetworkImage(                    
+                    widget.url
                   ),
                 ),
               ),

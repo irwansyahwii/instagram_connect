@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:instagram_connect/models/ig_media.dart';
 import 'package:instagram_connect/models/ig_user.dart';
 import 'package:instagram_connect/providers/instagram_insights_provider.dart';
 import 'package:instagram_connect/providers/instagram_user_provider.dart';
@@ -16,6 +17,7 @@ class InstagramInsightsController extends GetxController {
 
   RxString resultString = "".obs;
   Rx<IgUser> igUser = IgUser.empty().obs;
+  RxList<IgMedia> igStories = RxList.empty();
 
   final InstagramInsightsProvider instagramInsightsProvider = Get.find();
   final InstagramUserProvider instagramUserProvider = Get.find();
@@ -34,7 +36,8 @@ class InstagramInsightsController extends GetxController {
 
       final igUserId = igUserIdResponse["instagram_business_account"]["id"];      
       final IgUser igUserValue = await instagramUserProvider.getIgUser(igUserId);
-      final igUserInsights = await instagramInsightsProvider.getIgUserInsights(igUserId);
+
+      final igStoriesValues = await instagramUserProvider.getStories(igUserId);
 
       igUser.update((val) {
         val!.biography = igUserValue.biography;
@@ -54,12 +57,8 @@ class InstagramInsightsController extends GetxController {
         val!.impression = igUserValue.impression;
       });
 
-      final insightsString = igUserInsights.data.map((e) {
-         return '${e.name}: ${e.values[0].value}';
-      },).join(",");
-      resultString.value = 'username: ${igUserValue.username}, $insightsString';
-      
-      print(igUserInsights);
+      igStories.value = igStoriesValues;
+
 
     }finally{
       screenStatus.value = ScreenStatus.ready;
