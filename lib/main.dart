@@ -5,6 +5,7 @@ import 'package:instagram_connect/controllers/instagram_insights_controller.dart
 import 'package:instagram_connect/models/instagram_constant.dart';
 import 'package:instagram_connect/instagram_view.dart';
 import 'package:instagram_connect/providers/instagram_insights_provider.dart';
+import 'package:instagram_connect/providers/instagram_user_provider.dart';
 import 'package:instagram_connect/screens/home.dart';
 import 'package:instagram_connect/screens/instagram_insights.dart';
 import 'package:instagram_connect/screens/login_screen.dart';
@@ -17,14 +18,14 @@ void main() {
     initialRoute: 'login',
     initialBinding: BindingsBuilder(() {
       Get.put<InstagramInsightsProvider>(InstagramInsightsProvider());
+      Get.put<InstagramUserProvider>(InstagramUserProvider());
     }),
     getPages: [
       GetPage(name: '/login', page: () => LoginScreen(),),
       GetPage(name: '/home', page: () => Home(),),
       GetPage(name: '/instagram', page: () => const InstagramView(),),
       GetPage(name: '/instagram-insights', page: () => InstagramInsights(), binding: BindingsBuilder(() {
-        Get.put<InstagramInsightsController>(InstagramInsightsController());
-        
+        Get.put<InstagramInsightsController>(InstagramInsightsController());        
       },) )
     ],
   ));

@@ -22,10 +22,10 @@ class InstagramInsights extends StatelessWidget {
           children: [
             Text("irwansyahswitch", style: TextStyle(fontWeight: FontWeight.bold),),
             ProfileSection(
-              profilePictureUrl: Uri.parse("https://user-images.githubusercontent.com/37553901/134119814-8199fe68-cbc7-4a8d-8d4f-4abb16343a80.png"),
-              name: "Irwansyah",
-              website: "http://www.irwan.com",
-              followers: 0, following: 1, postsCount: 4,
+              profilePictureUrl: Uri.parse(controller.igUser.value.profilePictureUrl),
+              name: controller.igUser.value.name,
+              website: controller.igUser.value.website,
+              followers: controller.igUser.value.followersCount, following: controller.igUser.value.followsCount, postsCount: controller.igUser.value.mediaCount,
             engagement: 0, impression: 0, profileViewed: 0, reach: 0, 
             ),
 
