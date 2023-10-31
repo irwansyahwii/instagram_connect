@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-import 'package:get/get.dart';
-
-import 'home.dart';
-import 'instagram_constant.dart';
+import 'package:instagram_connect/screens/home_view.dart';
+import 'models/instagram_constant.dart';
 import 'instagram_model.dart';
 
 class InstagramView extends StatelessWidget {

@@ -49,6 +49,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  dashed_circle:
+    dependency: "direct main"
+    description:
+      name: dashed_circle
+      sha256: "26636eb6e90da37464caf02d595ba4ecd38509418b7f224906fe52e1be5c84f8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   fake_async:
     dependency: transitive
     description:
@@ -70,6 +78,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
+  flutter_profile_picture:
+    dependency: "direct main"
+    description:
+      name: flutter_profile_picture
+      sha256: "067caecef0d7162d3858eaca3c5859cbbb21b3e5704c2bc5b96b50ffe267f45d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
