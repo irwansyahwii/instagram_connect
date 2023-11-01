@@ -20,7 +20,7 @@ class InstagramInsights extends StatelessWidget {
       }else{
         return SafeArea(child: SingleChildScrollView(child: Column(
           children: [
-            Text("irwansyahswitch", style: TextStyle(fontWeight: FontWeight.bold),),
+            Text(controller.igUser.value.username, style: const TextStyle(fontWeight: FontWeight.bold),),
             ProfileSection(
               profilePictureUrl: Uri.parse(controller.igUser.value.profilePictureUrl),
               name: controller.igUser.value.name,
