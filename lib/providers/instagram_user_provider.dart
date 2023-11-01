@@ -100,4 +100,24 @@ class InstagramUserProvider extends GetConnect {
     return result;
   }
 
+  Future<DataIds> getMediaIds(String userId) async {
+    final jsonString = await get('https://graph.facebook.com/v18.0/$userId/media?access_token=${InstagramConstant.instance.accessToken}');
+
+    return DataIds.fromJson(jsonDecode(jsonString.bodyString ?? "{}"));
+  }
+
+
+  Future<List<IgMedia>> getPosts(String userId) async {
+
+    List<IgMedia> result = [];
+    final mediaIds = await getMediaIds(userId);
+    for(int i = 0; i < mediaIds.data.length; i++){
+      final mediaId = mediaIds.data[i].id;
+      IgMedia mediaInfo = await getIGMedia(mediaId);
+      result.add(mediaInfo);
+    }
+
+    return result;
+  }
+
 }

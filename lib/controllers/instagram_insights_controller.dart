@@ -18,6 +18,7 @@ class InstagramInsightsController extends GetxController {
   RxString resultString = "".obs;
   Rx<IgUser> igUser = IgUser.empty().obs;
   RxList<IgMedia> igStories = RxList.empty();
+  RxList<IgMedia> igPosts = RxList.empty();
 
   final InstagramInsightsProvider instagramInsightsProvider = Get.find();
   final InstagramUserProvider instagramUserProvider = Get.find();
@@ -39,6 +40,8 @@ class InstagramInsightsController extends GetxController {
 
       final igStoriesValues = await instagramUserProvider.getStories(igUserId);
 
+      final igPostsValues = await instagramUserProvider.getPosts(igUserId);
+
       igUser.update((val) {
         val!.biography = igUserValue.biography;
         val!.id = igUserValue.id;
@@ -58,6 +61,8 @@ class InstagramInsightsController extends GetxController {
       });
 
       igStories.value = igStoriesValues;
+
+      igPosts.value = igPostsValues;
 
 
     }finally{
