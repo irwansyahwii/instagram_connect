@@ -40,7 +40,8 @@ class InstagramInsightsController extends GetxController {
 
       final igStoriesValues = await instagramUserProvider.getStories(igUserId);
 
-      final igPostsValues = await instagramUserProvider.getPosts(igUserId);
+      // final igPostsValues = await instagramUserProvider.getPosts(igUserId);
+      final igPostsValues = await instagramUserProvider.getPostsPlaceholder(igUserId);
 
       igUser.update((val) {
         val!.biography = igUserValue.biography;
@@ -70,6 +71,22 @@ class InstagramInsightsController extends GetxController {
     }
     
 
+  }
+
+  void getPost(String id) async {
+    print("getPost for id: $id");
+    IgMedia mediaInfo = await instagramUserProvider.getIGMedia(id);
+
+    print("getPost for id: $id success");
+
+    for(int i = 0; i < igPosts.length; i++){
+      if(igPosts[i].id == id){
+        igPosts[i] = mediaInfo;
+        break;
+      }
+    }
+
+    igPosts.refresh();
   }
 
 }

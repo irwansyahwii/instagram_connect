@@ -30,7 +30,7 @@ class InstagramInsights extends StatelessWidget {
             ),
 
             StoriesSection(igMedias: controller.igStories.value),
-            SizedBox(height: (MediaQuery.of(context).size.height / 3 + 200)* controller.igPosts.length + 2000, width: MediaQuery.of(context).size.width, child: MediasGrid(posts: controller.igPosts.value),)            
+            SizedBox(height: (MediaQuery.of(context).size.height / 3 + 200)* controller.igPosts.length + 2000, width: MediaQuery.of(context).size.width, child: MediasGrid(posts: controller.igPosts),)            
             
           ],
         ),) ); 

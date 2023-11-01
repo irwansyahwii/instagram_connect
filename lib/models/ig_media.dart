@@ -47,14 +47,38 @@ class IgMedia {
         required this.mediaProductType
     });
 
+    factory IgMedia.placeholderOnly({required id}){
+      return IgMedia(
+        id: id, 
+        mediaType: "", 
+        mediaUrl: "", owner: Owner(id: ""), 
+        timestamp: "", 
+        caption: "", 
+        commentsCount: 0, 
+        likeCount: 0, 
+        permalink: "", 
+        shortcode: "", 
+        thumbnailUrl: "", 
+        engagement: 0, 
+        exits: 0, 
+        shares: 0, 
+        saved: 0, 
+        replies: 0, 
+        reach: 0, 
+        tapsForward: 0, 
+        tapsBackward: 0, 
+        impressions: 0, 
+        mediaProductType: "");
+    }
+
     factory IgMedia.fromJson(Map<String, dynamic> json) => IgMedia(
-        id: json["id"],
+        id: json["id"] ?? "",
         mediaType: json["media_type"] ?? "",
         mediaUrl: json["media_url"] ?? "",
         owner: Owner.fromJson(json["owner"] ??  jsonDecode('{"id": ""}')),
         timestamp: json["timestamp"] ?? "",
         caption: json["caption"] ?? "",
-        commentsCount: json["comments_count"]?? "",
+        commentsCount: json["comments_count"]?? 0,
         likeCount: json["like_count"]?? 0,
         permalink: json["permalink"]?? "",
         shortcode: json["shortcode"]?? "",

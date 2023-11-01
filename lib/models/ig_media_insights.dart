@@ -6,7 +6,7 @@ class IgMediaInsights {
     });
 
     factory IgMediaInsights.fromJson(Map<String, dynamic> json) => IgMediaInsights(
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        data: List<Datum>.from((json["data"] ?? []).map((x) => Datum.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {

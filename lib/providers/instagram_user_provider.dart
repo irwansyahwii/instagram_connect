@@ -106,6 +106,40 @@ class InstagramUserProvider extends GetConnect {
     return DataIds.fromJson(jsonDecode(jsonString.bodyString ?? "{}"));
   }
 
+  Future<List<IgMedia>> getPostsPlaceholder(String userId) async {
+
+    List<IgMedia> result = [];
+    final mediaIds = await getMediaIds(userId);
+    for(int i = 0; i < mediaIds.data.length; i++){
+      final mediaId = mediaIds.data[i].id;
+      IgMedia mediaInfo = IgMedia.placeholderOnly(id:mediaId);
+      result.add(mediaInfo);
+    }
+
+    return result;
+  }
+
+  Future<IgMedia> getPost(String mediaId) async {
+
+    IgMedia mediaInfo = await getIGMedia(mediaId);
+
+    return mediaInfo;
+  }
+
+
+  Future<List<IgMedia>> getPostsFromPlaceholders(List<IgMedia> placeholders) async {
+
+    List<IgMedia> result = [];
+    final mediaIds = placeholders;
+    for(int i = 0; i < mediaIds.length; i++){
+      final mediaId = mediaIds[i].id;
+      IgMedia mediaInfo = await getIGMedia(mediaId);
+      result.add(mediaInfo);
+    }
+
+    return result;
+  }
+
 
   Future<List<IgMedia>> getPosts(String userId) async {
 
