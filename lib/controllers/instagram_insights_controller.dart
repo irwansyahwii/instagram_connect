@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:instagram_connect/models/ig_media.dart';
 import 'package:instagram_connect/models/ig_user.dart';
+import 'package:instagram_connect/models/instagram_constant.dart';
 import 'package:instagram_connect/providers/instagram_insights_provider.dart';
 import 'package:instagram_connect/providers/instagram_user_provider.dart';
 
@@ -29,6 +30,8 @@ class InstagramInsightsController extends GetxController {
       screenStatus.value = ScreenStatus.loading;
 
       // await Future.delayed(const Duration(seconds: 1));
+      final longLiveTokenResponse = await instagramUserProvider.getLongLiveToken();
+      InstagramConstant.instance.accessToken = longLiveTokenResponse.accessToken;
       final meAccounts = await instagramInsightsProvider.getMeAccounts();
 
       final pageId = meAccounts["data"][0]["id"] ?? "";

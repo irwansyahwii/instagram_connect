@@ -9,8 +9,16 @@ import 'package:instagram_connect/models/ig_media_insights.dart';
 import 'package:instagram_connect/models/ig_user.dart';
 import 'package:instagram_connect/models/ig_user_insights.dart';
 import 'package:instagram_connect/models/instagram_constant.dart';
+import 'package:instagram_connect/models/long_live_token_response.dart';
 
 class InstagramUserProvider extends GetConnect {
+
+
+  Future<LongLiveTokenResponse> getLongLiveToken() async {
+    final jsonString = await get('https://graph.facebook.com/v18.0/oauth/access_token?grant_type=fb_exchange_token&client_id=${InstagramConstant.clientID}&client_secret=${InstagramConstant.appSecret}&fb_exchange_token=${InstagramConstant.instance.accessToken}');
+
+    return LongLiveTokenResponse.fromJson(jsonDecode(jsonString.bodyString ?? "{}"));
+  }
 
   Future<IgUserInsights> getIgUserInsights(String userId) async {
     final jsonString = await get('https://graph.facebook.com/v18.0/$userId/insights?metric=impressions,reach,profile_views,accounts_engaged&period=day&metric_type=total_value&access_token=${InstagramConstant.instance.accessToken}');
