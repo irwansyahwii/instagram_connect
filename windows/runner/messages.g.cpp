@@ -139,9 +139,11 @@ Permission Permission::FromEncodableList(const EncodableList& list) {
 
 TikTokLoginResult::TikTokLoginResult(
   const TikTokLoginStatus& status,
-  const EncodableList& granted_permissions)
+  const EncodableList& granted_permissions,
+  const std::string& scope_name)
  : status_(status),
-    granted_permissions_(granted_permissions) {}
+    granted_permissions_(granted_permissions),
+    scope_name_(scope_name) {}
 
 TikTokLoginResult::TikTokLoginResult(
   const TikTokLoginStatus& status,
@@ -150,14 +152,16 @@ TikTokLoginResult::TikTokLoginResult(
   const std::string* code_verifier,
   const EncodableList& granted_permissions,
   const std::string* error_code,
-  const std::string* error_message)
+  const std::string* error_message,
+  const std::string& scope_name)
  : status_(status),
     auth_code_(auth_code ? std::optional<std::string>(*auth_code) : std::nullopt),
     state_(state ? std::optional<std::string>(*state) : std::nullopt),
     code_verifier_(code_verifier ? std::optional<std::string>(*code_verifier) : std::nullopt),
     granted_permissions_(granted_permissions),
     error_code_(error_code ? std::optional<std::string>(*error_code) : std::nullopt),
-    error_message_(error_message ? std::optional<std::string>(*error_message) : std::nullopt) {}
+    error_message_(error_message ? std::optional<std::string>(*error_message) : std::nullopt),
+    scope_name_(scope_name) {}
 
 const TikTokLoginStatus& TikTokLoginResult::status() const {
   return status_;
@@ -242,9 +246,18 @@ void TikTokLoginResult::set_error_message(std::string_view value_arg) {
 }
 
 
+const std::string& TikTokLoginResult::scope_name() const {
+  return scope_name_;
+}
+
+void TikTokLoginResult::set_scope_name(std::string_view value_arg) {
+  scope_name_ = value_arg;
+}
+
+
 EncodableList TikTokLoginResult::ToEncodableList() const {
   EncodableList list;
-  list.reserve(7);
+  list.reserve(8);
   list.push_back(EncodableValue((int)status_));
   list.push_back(auth_code_ ? EncodableValue(*auth_code_) : EncodableValue());
   list.push_back(state_ ? EncodableValue(*state_) : EncodableValue());
@@ -252,13 +265,15 @@ EncodableList TikTokLoginResult::ToEncodableList() const {
   list.push_back(EncodableValue(granted_permissions_));
   list.push_back(error_code_ ? EncodableValue(*error_code_) : EncodableValue());
   list.push_back(error_message_ ? EncodableValue(*error_message_) : EncodableValue());
+  list.push_back(EncodableValue(scope_name_));
   return list;
 }
 
 TikTokLoginResult TikTokLoginResult::FromEncodableList(const EncodableList& list) {
   TikTokLoginResult decoded(
     (TikTokLoginStatus)(std::get<int32_t>(list[0])),
-    std::get<EncodableList>(list[4]));
+    std::get<EncodableList>(list[4]),
+    std::get<std::string>(list[7]));
   auto& encodable_auth_code = list[1];
   if (!encodable_auth_code.IsNull()) {
     decoded.set_auth_code(std::get<std::string>(encodable_auth_code));

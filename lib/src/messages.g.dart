@@ -30,7 +30,26 @@ enum TikTokLoginStatus {
 
 /// https://developers.tiktok.com/doc/tiktok-api-scopes/
 enum TikTokPermissionType {
+  /// Access to public commercial data for research purposes
   researchAdlibBasic,
+  /// Access to TikTok public data for research purposes
+  researchDataBasic,
+  /// Read a user's profile info (open id, avatar, display name ...)
+  userInfoBasic,
+  /// Read access to profile_web_link, profile_deep_link, bio_description, is_verified.
+  userInfoProfile,
+  /// Read access to a user's statistical data, such as likes count, follower count, following count, and video count
+  userInfoStats,
+  /// Read the user's in app communication settings (currently only DM settings are supported)
+  userSettingList,
+  /// Update the user's in app communication settings (currently only DM settings are supported)
+  userSettingsUpdate,
+  /// Read a user's public videos on TikTok
+  videoList,
+  /// Directly post videos to a user's TikTok profile.
+  videoPublish,
+  /// Share videos to the creator's account as a draft to further edit and post in TikTok.
+  videoUpload,
 }
 
 class MessageData {
@@ -99,6 +118,7 @@ class TikTokLoginResult {
     required this.grantedPermissions,
     this.errorCode,
     this.errorMessage,
+    required this.scopeName,
   });
 
   TikTokLoginStatus status;
@@ -115,6 +135,8 @@ class TikTokLoginResult {
 
   String? errorMessage;
 
+  String scopeName;
+
   Object encode() {
     return <Object?>[
       status.index,
@@ -124,6 +146,7 @@ class TikTokLoginResult {
       grantedPermissions,
       errorCode,
       errorMessage,
+      scopeName,
     ];
   }
 
@@ -137,6 +160,7 @@ class TikTokLoginResult {
       grantedPermissions: (result[4] as List<Object?>?)!.cast<Permission?>(),
       errorCode: result[5] as String?,
       errorMessage: result[6] as String?,
+      scopeName: result[7]! as String,
     );
   }
 }
@@ -316,7 +340,7 @@ class TiktokSDKApi {
     }
   }
 
-  Future<TikTokLoginResult> login(List<TikTokPermissionType?> arg_permissions, String arg_redirectUri, bool? arg_browserAuthEnabled) async {
+  Future<TikTokLoginResult> login(List<String?> arg_permissions, String arg_redirectUri, bool? arg_browserAuthEnabled) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.instagram_connect.TiktokSDKApi.login', codec,
         binaryMessenger: _binaryMessenger);

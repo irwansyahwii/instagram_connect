@@ -68,7 +68,26 @@ enum class TikTokLoginStatus(val raw: Int) {
 
 /** https://developers.tiktok.com/doc/tiktok-api-scopes/ */
 enum class TikTokPermissionType(val raw: Int) {
-  RESEARCHADLIBBASIC(0);
+  /** Access to public commercial data for research purposes */
+  RESEARCHADLIBBASIC(0),
+  /** Access to TikTok public data for research purposes */
+  RESEARCHDATABASIC(1),
+  /** Read a user's profile info (open id, avatar, display name ...) */
+  USERINFOBASIC(2),
+  /** Read access to profile_web_link, profile_deep_link, bio_description, is_verified. */
+  USERINFOPROFILE(3),
+  /** Read access to a user's statistical data, such as likes count, follower count, following count, and video count */
+  USERINFOSTATS(4),
+  /** Read the user's in app communication settings (currently only DM settings are supported) */
+  USERSETTINGLIST(5),
+  /** Update the user's in app communication settings (currently only DM settings are supported) */
+  USERSETTINGSUPDATE(6),
+  /** Read a user's public videos on TikTok */
+  VIDEOLIST(7),
+  /** Directly post videos to a user's TikTok profile. */
+  VIDEOPUBLISH(8),
+  /** Share videos to the creator's account as a draft to further edit and post in TikTok. */
+  VIDEOUPLOAD(9);
 
   companion object {
     fun ofRaw(raw: Int): TikTokPermissionType? {
@@ -132,7 +151,8 @@ data class TikTokLoginResult (
   val codeVerifier: String? = null,
   val grantedPermissions: List<Permission?>,
   val errorCode: String? = null,
-  val errorMessage: String? = null
+  val errorMessage: String? = null,
+  val scopeName: String
 
 ) {
   companion object {
@@ -145,7 +165,8 @@ data class TikTokLoginResult (
       val grantedPermissions = list[4] as List<Permission?>
       val errorCode = list[5] as String?
       val errorMessage = list[6] as String?
-      return TikTokLoginResult(status, authCode, state, codeVerifier, grantedPermissions, errorCode, errorMessage)
+      val scopeName = list[7] as String
+      return TikTokLoginResult(status, authCode, state, codeVerifier, grantedPermissions, errorCode, errorMessage, scopeName)
     }
   }
   fun toList(): List<Any?> {
@@ -157,6 +178,7 @@ data class TikTokLoginResult (
       grantedPermissions,
       errorCode,
       errorMessage,
+      scopeName,
     )
   }
 }
@@ -291,7 +313,7 @@ private object TiktokSDKApiCodec : StandardMessageCodec() {
 /** Generated interface from Pigeon that represents a handler of messages from Flutter. */
 interface TiktokSDKApi {
   fun setup(clientKey: String, callback: (Result<Unit>) -> Unit)
-  fun login(permissions: List<TikTokPermissionType>, redirectUri: String, browserAuthEnabled: Boolean?, callback: (Result<TikTokLoginResult>) -> Unit)
+  fun login(permissions: List<String>, redirectUri: String, browserAuthEnabled: Boolean?, callback: (Result<TikTokLoginResult>) -> Unit)
 
   companion object {
     /** The codec used by TiktokSDKApi. */
@@ -325,7 +347,7 @@ interface TiktokSDKApi {
         if (api != null) {
           channel.setMessageHandler { message, reply ->
             val args = message as List<Any?>
-            val permissionsArg = args[0] as List<TikTokPermissionType>
+            val permissionsArg = args[0] as List<String>
             val redirectUriArg = args[1] as String
             val browserAuthEnabledArg = args[2] as Boolean?
             api.login(permissionsArg, redirectUriArg, browserAuthEnabledArg) { result: Result<TikTokLoginResult> ->

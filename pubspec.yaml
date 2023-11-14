@@ -43,6 +43,8 @@ dependencies:
   uni_links: ^0.5.1
   flutter_profile_picture: ^2.0.0
   dashed_circle: ^0.0.2
+  pigeon: ^13.0.0
+  tiktok_sdk_v2: ^0.0.2
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <queries>
+        <package android:name="com.zhiliaoapp.musically" />
+        <package android:name="com.ss.android.ugc.trill" />
+    </queries>    
     <application
         android:label="instagram_connect"
         android:name="${applicationName}"
@@ -30,7 +35,10 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="ice" />
+                <!-- <data android:scheme="ice" /> -->
+
+                <data android:scheme="https://" />
+                <data android:host="www.ice.id"/>                
             </intent-filter>
 
         </activity>

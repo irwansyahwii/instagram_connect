@@ -51,7 +51,26 @@ enum TikTokLoginStatus: Int {
 
 /// https://developers.tiktok.com/doc/tiktok-api-scopes/
 enum TikTokPermissionType: Int {
+  /// Access to public commercial data for research purposes
   case researchAdlibBasic = 0
+  /// Access to TikTok public data for research purposes
+  case researchDataBasic = 1
+  /// Read a user's profile info (open id, avatar, display name ...)
+  case userInfoBasic = 2
+  /// Read access to profile_web_link, profile_deep_link, bio_description, is_verified.
+  case userInfoProfile = 3
+  /// Read access to a user's statistical data, such as likes count, follower count, following count, and video count
+  case userInfoStats = 4
+  /// Read the user's in app communication settings (currently only DM settings are supported)
+  case userSettingList = 5
+  /// Update the user's in app communication settings (currently only DM settings are supported)
+  case userSettingsUpdate = 6
+  /// Read a user's public videos on TikTok
+  case videoList = 7
+  /// Directly post videos to a user's TikTok profile.
+  case videoPublish = 8
+  /// Share videos to the creator's account as a draft to further edit and post in TikTok.
+  case videoUpload = 9
 }
 
 /// Generated class from Pigeon that represents data sent in messages.
@@ -111,6 +130,7 @@ struct TikTokLoginResult {
   var grantedPermissions: [Permission?]
   var errorCode: String? = nil
   var errorMessage: String? = nil
+  var scopeName: String
 
   static func fromList(_ list: [Any?]) -> TikTokLoginResult? {
     let status = TikTokLoginStatus(rawValue: list[0] as! Int)!
@@ -120,6 +140,7 @@ struct TikTokLoginResult {
     let grantedPermissions = list[4] as! [Permission?]
     let errorCode: String? = nilOrValue(list[5])
     let errorMessage: String? = nilOrValue(list[6])
+    let scopeName = list[7] as! String
 
     return TikTokLoginResult(
       status: status,
@@ -128,7 +149,8 @@ struct TikTokLoginResult {
       codeVerifier: codeVerifier,
       grantedPermissions: grantedPermissions,
       errorCode: errorCode,
-      errorMessage: errorMessage
+      errorMessage: errorMessage,
+      scopeName: scopeName
     )
   }
   func toList() -> [Any?] {
@@ -140,6 +162,7 @@ struct TikTokLoginResult {
       grantedPermissions,
       errorCode,
       errorMessage,
+      scopeName,
     ]
   }
 }
@@ -285,7 +308,7 @@ class TiktokSDKApiCodec: FlutterStandardMessageCodec {
 /// Generated protocol from Pigeon that represents a handler of messages from Flutter.
 protocol TiktokSDKApi {
   func setup(clientKey: String, completion: @escaping (Result<Void, Error>) -> Void)
-  func login(permissions: [TikTokPermissionType], redirectUri: String, browserAuthEnabled: Bool?, completion: @escaping (Result<TikTokLoginResult, Error>) -> Void)
+  func login(permissions: [String], redirectUri: String, browserAuthEnabled: Bool?, completion: @escaping (Result<TikTokLoginResult, Error>) -> Void)
 }
 
 /// Generated setup class from Pigeon to handle messages through the `binaryMessenger`.
@@ -315,7 +338,7 @@ class TiktokSDKApiSetup {
     if let api = api {
       loginChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
-        let permissionsArg = args[0] as! [TikTokPermissionType]
+        let permissionsArg = args[0] as! [String]
         let redirectUriArg = args[1] as! String
         let browserAuthEnabledArg: Bool? = nilOrValue(args[2])
         api.login(permissions: permissionsArg, redirectUri: redirectUriArg, browserAuthEnabled: browserAuthEnabledArg) { result in

@@ -136,7 +136,8 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
     codeVerifier:(nullable NSString *)codeVerifier
     grantedPermissions:(NSArray<PGNPermission *> *)grantedPermissions
     errorCode:(nullable NSString *)errorCode
-    errorMessage:(nullable NSString *)errorMessage {
+    errorMessage:(nullable NSString *)errorMessage
+    scopeName:(NSString *)scopeName {
   PGNTikTokLoginResult* pigeonResult = [[PGNTikTokLoginResult alloc] init];
   pigeonResult.status = status;
   pigeonResult.authCode = authCode;
@@ -145,6 +146,7 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
   pigeonResult.grantedPermissions = grantedPermissions;
   pigeonResult.errorCode = errorCode;
   pigeonResult.errorMessage = errorMessage;
+  pigeonResult.scopeName = scopeName;
   return pigeonResult;
 }
 + (PGNTikTokLoginResult *)fromList:(NSArray *)list {
@@ -156,6 +158,7 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
   pigeonResult.grantedPermissions = GetNullableObjectAtIndex(list, 4);
   pigeonResult.errorCode = GetNullableObjectAtIndex(list, 5);
   pigeonResult.errorMessage = GetNullableObjectAtIndex(list, 6);
+  pigeonResult.scopeName = GetNullableObjectAtIndex(list, 7);
   return pigeonResult;
 }
 + (nullable PGNTikTokLoginResult *)nullableFromList:(NSArray *)list {
@@ -170,6 +173,7 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
     self.grantedPermissions ?: [NSNull null],
     self.errorCode ?: [NSNull null],
     self.errorMessage ?: [NSNull null],
+    self.scopeName ?: [NSNull null],
   ];
 }
 @end
@@ -361,7 +365,7 @@ void SetUpPGNTiktokSDKApi(id<FlutterBinaryMessenger> binaryMessenger, NSObject<P
       NSCAssert([api respondsToSelector:@selector(loginPermissions:redirectUri:browserAuthEnabled:completion:)], @"PGNTiktokSDKApi api (%@) doesn't respond to @selector(loginPermissions:redirectUri:browserAuthEnabled:completion:)", api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
-        NSArray<PGNTikTokPermissionType *> *arg_permissions = GetNullableObjectAtIndex(args, 0);
+        NSArray<NSString *> *arg_permissions = GetNullableObjectAtIndex(args, 0);
         NSString *arg_redirectUri = GetNullableObjectAtIndex(args, 1);
         NSNumber *arg_browserAuthEnabled = GetNullableObjectAtIndex(args, 2);
         [api loginPermissions:arg_permissions redirectUri:arg_redirectUri browserAuthEnabled:arg_browserAuthEnabled completion:^(PGNTikTokLoginResult *_Nullable output, FlutterError *_Nullable error) {

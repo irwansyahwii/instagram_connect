@@ -70,7 +70,26 @@ enum class TikTokLoginStatus {
 
 // https://developers.tiktok.com/doc/tiktok-api-scopes/
 enum class TikTokPermissionType {
-  researchAdlibBasic = 0
+  // Access to public commercial data for research purposes
+  researchAdlibBasic = 0,
+  // Access to TikTok public data for research purposes
+  researchDataBasic = 1,
+  // Read a user's profile info (open id, avatar, display name ...)
+  userInfoBasic = 2,
+  // Read access to profile_web_link, profile_deep_link, bio_description, is_verified.
+  userInfoProfile = 3,
+  // Read access to a user's statistical data, such as likes count, follower count, following count, and video count
+  userInfoStats = 4,
+  // Read the user's in app communication settings (currently only DM settings are supported)
+  userSettingList = 5,
+  // Update the user's in app communication settings (currently only DM settings are supported)
+  userSettingsUpdate = 6,
+  // Read a user's public videos on TikTok
+  videoList = 7,
+  // Directly post videos to a user's TikTok profile.
+  videoPublish = 8,
+  // Share videos to the creator's account as a draft to further edit and post in TikTok.
+  videoUpload = 9
 };
 
 // Generated class from Pigeon that represents data sent in messages.
@@ -146,7 +165,8 @@ class TikTokLoginResult {
   // Constructs an object setting all non-nullable fields.
   explicit TikTokLoginResult(
     const TikTokLoginStatus& status,
-    const flutter::EncodableList& granted_permissions);
+    const flutter::EncodableList& granted_permissions,
+    const std::string& scope_name);
 
   // Constructs an object setting all fields.
   explicit TikTokLoginResult(
@@ -156,7 +176,8 @@ class TikTokLoginResult {
     const std::string* code_verifier,
     const flutter::EncodableList& granted_permissions,
     const std::string* error_code,
-    const std::string* error_message);
+    const std::string* error_message,
+    const std::string& scope_name);
 
   const TikTokLoginStatus& status() const;
   void set_status(const TikTokLoginStatus& value_arg);
@@ -184,6 +205,9 @@ class TikTokLoginResult {
   void set_error_message(const std::string_view* value_arg);
   void set_error_message(std::string_view value_arg);
 
+  const std::string& scope_name() const;
+  void set_scope_name(std::string_view value_arg);
+
 
  private:
   static TikTokLoginResult FromEncodableList(const flutter::EncodableList& list);
@@ -199,6 +223,7 @@ class TikTokLoginResult {
   flutter::EncodableList granted_permissions_;
   std::optional<std::string> error_code_;
   std::optional<std::string> error_message_;
+  std::string scope_name_;
 
 };
 

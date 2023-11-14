@@ -35,7 +35,26 @@ typedef NS_ENUM(NSUInteger, PGNTikTokLoginStatus) {
 
 /// https://developers.tiktok.com/doc/tiktok-api-scopes/
 typedef NS_ENUM(NSUInteger, PGNTikTokPermissionType) {
+  /// Access to public commercial data for research purposes
   PGNTikTokPermissionTypeResearchAdlibBasic = 0,
+  /// Access to TikTok public data for research purposes
+  PGNTikTokPermissionTypeResearchDataBasic = 1,
+  /// Read a user's profile info (open id, avatar, display name ...)
+  PGNTikTokPermissionTypeUserInfoBasic = 2,
+  /// Read access to profile_web_link, profile_deep_link, bio_description, is_verified.
+  PGNTikTokPermissionTypeUserInfoProfile = 3,
+  /// Read access to a user's statistical data, such as likes count, follower count, following count, and video count
+  PGNTikTokPermissionTypeUserInfoStats = 4,
+  /// Read the user's in app communication settings (currently only DM settings are supported)
+  PGNTikTokPermissionTypeUserSettingList = 5,
+  /// Update the user's in app communication settings (currently only DM settings are supported)
+  PGNTikTokPermissionTypeUserSettingsUpdate = 6,
+  /// Read a user's public videos on TikTok
+  PGNTikTokPermissionTypeVideoList = 7,
+  /// Directly post videos to a user's TikTok profile.
+  PGNTikTokPermissionTypeVideoPublish = 8,
+  /// Share videos to the creator's account as a draft to further edit and post in TikTok.
+  PGNTikTokPermissionTypeVideoUpload = 9,
 };
 
 /// Wrapper for PGNTikTokPermissionType to allow for nullability.
@@ -77,7 +96,8 @@ typedef NS_ENUM(NSUInteger, PGNTikTokPermissionType) {
     codeVerifier:(nullable NSString *)codeVerifier
     grantedPermissions:(NSArray<PGNPermission *> *)grantedPermissions
     errorCode:(nullable NSString *)errorCode
-    errorMessage:(nullable NSString *)errorMessage;
+    errorMessage:(nullable NSString *)errorMessage
+    scopeName:(NSString *)scopeName;
 @property(nonatomic, assign) PGNTikTokLoginStatus status;
 @property(nonatomic, copy, nullable) NSString * authCode;
 @property(nonatomic, copy, nullable) NSString * state;
@@ -85,6 +105,7 @@ typedef NS_ENUM(NSUInteger, PGNTikTokPermissionType) {
 @property(nonatomic, copy) NSArray<PGNPermission *> * grantedPermissions;
 @property(nonatomic, copy, nullable) NSString * errorCode;
 @property(nonatomic, copy, nullable) NSString * errorMessage;
+@property(nonatomic, copy) NSString * scopeName;
 @end
 
 /// The codec used by PGNExampleHostApi.
@@ -105,7 +126,7 @@ NSObject<FlutterMessageCodec> *PGNTiktokSDKApiGetCodec(void);
 
 @protocol PGNTiktokSDKApi
 - (void)setupClientKey:(NSString *)clientKey completion:(void (^)(FlutterError *_Nullable))completion;
-- (void)loginPermissions:(NSArray<PGNTikTokPermissionType *> *)permissions redirectUri:(NSString *)redirectUri browserAuthEnabled:(nullable NSNumber *)browserAuthEnabled completion:(void (^)(PGNTikTokLoginResult *_Nullable, FlutterError *_Nullable))completion;
+- (void)loginPermissions:(NSArray<NSString *> *)permissions redirectUri:(NSString *)redirectUri browserAuthEnabled:(nullable NSNumber *)browserAuthEnabled completion:(void (^)(PGNTikTokLoginResult *_Nullable, FlutterError *_Nullable))completion;
 @end
 
 extern void SetUpPGNTiktokSDKApi(id<FlutterBinaryMessenger> binaryMessenger, NSObject<PGNTiktokSDKApi> *_Nullable api);

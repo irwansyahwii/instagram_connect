@@ -9,10 +9,15 @@ import 'package:instagram_connect/providers/instagram_user_provider.dart';
 import 'package:instagram_connect/screens/home.dart';
 import 'package:instagram_connect/screens/instagram_insights.dart';
 import 'package:instagram_connect/screens/login_screen.dart';
+import 'package:instagram_connect/src/glue.dart';
+import 'package:tiktok_sdk_v2/tiktok_sdk_v2.dart';
 import 'package:uni_links/uni_links.dart';
 void main() {
   runApp(GetMaterialApp(
     onInit: () async{
+      // TikTokSDK.instance.setup(clientKey: 'awuq84d134acknn2');
+      setupTiktokSDK();
+
       await initUniLinks();
     },
     initialRoute: 'login',
