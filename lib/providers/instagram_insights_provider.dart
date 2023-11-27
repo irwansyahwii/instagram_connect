@@ -1,9 +1,9 @@
 import 'dart:convert';
 
+import 'package:com.ice.instagramconnect/models/ig_user.dart';
+import 'package:com.ice.instagramconnect/models/ig_user_insights.dart';
+import 'package:com.ice.instagramconnect/models/instagram_constant.dart';
 import 'package:get/get_connect/connect.dart';
-import 'package:instagram_connect/models/ig_user.dart';
-import 'package:instagram_connect/models/ig_user_insight.dart';
-import 'package:instagram_connect/models/instagram_constant.dart';
 
 class InstagramInsightsProvider extends  GetConnect {
 

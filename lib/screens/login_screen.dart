@@ -1,11 +1,14 @@
+import 'dart:io';
+
+import 'package:com.ice.instagramconnect/controllers/login_screen_controller.dart';
+import 'package:com.ice.instagramconnect/models/instagram_constant.dart';
+import 'package:com.ice.instagramconnect/src/glue.dart';
 import 'package:flutter/material.dart';
-import 'package:instagram_connect/models/instagram_constant.dart';
-import 'package:instagram_connect/src/glue.dart';
-import 'package:instagram_connect/src/messages.g.dart';
-// import 'package:tiktok_sdk_v2/tiktok_sdk_v2.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginScreen extends StatelessWidget {
+
+  final LoginScreenController controller = LoginScreenController();
 
   Widget instaLoginButton(BuildContext context){
     return ElevatedButton(onPressed: () {        
@@ -40,12 +43,36 @@ class LoginScreen extends StatelessWidget {
       
   }
 
+  Widget uploadImageButton(BuildContext context){
+    return ElevatedButton(onPressed: () {
+      
+    }, child: const Text('Upload Image...'));
+  }
+
+  Widget selectedImage(BuildContext context){
+    if(controller.loginScreenModel.value.selectedImagePath == null){
+      return Container(
+                        decoration: BoxDecoration(
+                            color: Colors.red[200]),
+                        width: 200,
+                        height: 200,
+                        child: Icon(
+                          Icons.camera_alt,
+                          color: Colors.grey[800],
+                        ),
+                      );
+    }else{
+      return Image.file(File(controller.loginScreenModel.value.selectedImagePath!), width: 200, height: 200, fit: BoxFit.fitHeight,);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(child: Center(child: Column(children: [
         instaLoginButton(context),
-        tiktokLoginButton(context)
+        tiktokLoginButton(context),
+        uploadImageButton(context)
       ],)),)
     );
   }

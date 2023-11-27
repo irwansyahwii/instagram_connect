@@ -1,7 +1,7 @@
+import 'package:com.ice.instagramconnect/controllers/instagram_insights_controller.dart';
+import 'package:com.ice.instagramconnect/models/ig_media.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:instagram_connect/controllers/instagram_insights_controller.dart';
-import 'package:instagram_connect/models/ig_media.dart';
 
 class MediasGrid extends StatelessWidget {
   final RxList<IgMedia> posts;

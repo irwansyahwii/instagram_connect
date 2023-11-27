@@ -1,0 +1,12 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "id.ice.mobile",
+    "sha256_cert_fingerprints":
+    [
+      "FF:2A:CF:7B:DD:CC:F1:03:3E:E8:B2:27:7C:A2:E3:3C:DE:13:DB:AC:8E:EB:3A:B9:72:A1:0E:26:8A:F5:EC:AF",
+      "C7:C5:85:48:E2:71:4C:11:6A:E2:21:56:E6:63:20:78:D8:56:D1:4C:67:E9:F9:BD:29:B4:83:75:77:0D:69:74"
+      ]
+  }
+}]

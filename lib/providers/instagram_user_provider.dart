@@ -1,15 +1,15 @@
 import 'dart:collection';
 import 'dart:convert';
 
+import 'package:com.ice.instagramconnect/models/data_ids.dart';
+import 'package:com.ice.instagramconnect/models/ig_media.dart';
+import 'package:com.ice.instagramconnect/models/ig_media_insights.dart';
+import 'package:com.ice.instagramconnect/models/ig_user.dart';
+import 'package:com.ice.instagramconnect/models/ig_user_insights.dart';
+import 'package:com.ice.instagramconnect/models/instagram_constant.dart';
+import 'package:com.ice.instagramconnect/models/long_live_token_response.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/connect.dart';
-import 'package:instagram_connect/models/data_ids.dart';
-import 'package:instagram_connect/models/ig_media.dart';
-import 'package:instagram_connect/models/ig_media_insights.dart';
-import 'package:instagram_connect/models/ig_user.dart';
-import 'package:instagram_connect/models/ig_user_insights.dart';
-import 'package:instagram_connect/models/instagram_constant.dart';
-import 'package:instagram_connect/models/long_live_token_response.dart';
 
 class InstagramUserProvider extends GetConnect {
 

@@ -85,9 +85,15 @@ flutter {
 }
 
 dependencies {
-    implementation 'com.tiktok.open.sdk:tiktok-open-sdk-core:latest.release'
-//    implementation 'com.titktok.open.sdk:tiktok-open-sdk-auth:2.0.3@aar'
-    implementation 'com.tiktok.open.sdk:tiktok-open-sdk-auth:latest.release'   // to use authorization api
-    implementation 'com.tiktok.open.sdk:tiktok-open-sdk-share:latest.release'    // to use share api
+    // implementation 'com.tiktok.open.sdk:tiktok-open-sdk-core:latest.release'
+    // // implementation 'com.tiktok.open.sdk:tiktok-open-sdk-core:2.0.3@aar'
 
+    // // implementation 'com.titktok.open.sdk:tiktok-open-sdk-auth:2.0.3@aar'
+    // implementation 'com.tiktok.open.sdk:tiktok-open-sdk-auth:latest.release'   // to use authorization api
+
+    // // implementation 'com.tiktok.open.sdk:tiktok-open-sdk-share:2.0.3@aar'    // to use share api
+    // implementation 'com.tiktok.open.sdk:tiktok-open-sdk-share:latest.release'    // to use share api
+ implementation 'com.tiktok.open.sdk:tiktok-open-sdk-core:2.0.3'
+    implementation 'com.tiktok.open.sdk:tiktok-open-sdk-auth:2.0.3'   // to use authorization api
+    implementation 'com.tiktok.open.sdk:tiktok-open-sdk-share:2.0.3'    
 }

@@ -1,9 +1,9 @@
+import 'package:com.ice.instagramconnect/controllers/instagram_insights_controller.dart';
+import 'package:com.ice.instagramconnect/widgets/medias_grid.dart';
+import 'package:com.ice.instagramconnect/widgets/profile_section.dart';
+import 'package:com.ice.instagramconnect/widgets/stories_section.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:instagram_connect/controllers/instagram_insights_controller.dart';
-import 'package:instagram_connect/widgets/medias_grid.dart';
-import 'package:instagram_connect/widgets/profile_section.dart';
-import 'package:instagram_connect/widgets/stories_section.dart';
 
 class InstagramInsights extends StatelessWidget {
   final InstagramInsightsController controller = Get.find();

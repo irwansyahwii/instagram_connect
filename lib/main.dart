@@ -1,16 +1,17 @@
+import 'package:cloudinary_url_gen/cloudinary.dart';
+import 'package:com.ice.instagramconnect/cloudinary_context.dart';
+import 'package:com.ice.instagramconnect/controllers/instagram_insights_controller.dart';
+import 'package:com.ice.instagramconnect/instagram_view.dart';
+import 'package:com.ice.instagramconnect/models/instagram_constant.dart';
+import 'package:com.ice.instagramconnect/providers/instagram_insights_provider.dart';
+import 'package:com.ice.instagramconnect/providers/instagram_user_provider.dart';
+import 'package:com.ice.instagramconnect/screens/home.dart';
+import 'package:com.ice.instagramconnect/screens/instagram_insights.dart';
+import 'package:com.ice.instagramconnect/screens/login_screen.dart';
+import 'package:com.ice.instagramconnect/src/glue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:instagram_connect/controllers/instagram_insights_controller.dart';
-import 'package:instagram_connect/models/instagram_constant.dart';
-import 'package:instagram_connect/instagram_view.dart';
-import 'package:instagram_connect/providers/instagram_insights_provider.dart';
-import 'package:instagram_connect/providers/instagram_user_provider.dart';
-import 'package:instagram_connect/screens/home.dart';
-import 'package:instagram_connect/screens/instagram_insights.dart';
-import 'package:instagram_connect/screens/login_screen.dart';
-import 'package:instagram_connect/src/glue.dart';
-import 'package:tiktok_sdk_v2/tiktok_sdk_v2.dart';
 import 'package:uni_links/uni_links.dart';
 void main() {
   runApp(GetMaterialApp(
@@ -19,6 +20,7 @@ void main() {
       setupTiktokSDK();
 
       await initUniLinks();
+
     },
     initialRoute: 'login',
     initialBinding: BindingsBuilder(() {
@@ -27,6 +29,7 @@ void main() {
     }),
     getPages: [
       GetPage(name: '/login', page: () => LoginScreen(),),
+      GetPage(name: '/login-callback', page: () => Home(),),
       GetPage(name: '/home', page: () => Home(),),
       GetPage(name: '/instagram', page: () => const InstagramView(),),
       GetPage(name: '/instagram-insights', page: () => InstagramInsights(), binding: BindingsBuilder(() {
@@ -34,6 +37,10 @@ void main() {
       },) )
     ],
   ));
+}
+
+Future<void> initCloudinary() async {  
+  CloudinaryContext.cloudinary = Cloudinary.fromCloudName(cloudName: 'dn5lbtiuy');
 }
 
 Future<void> initUniLinks() async {

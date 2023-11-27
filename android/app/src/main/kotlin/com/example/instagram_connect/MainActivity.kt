@@ -9,9 +9,23 @@ import io.flutter.embedding.engine.plugins.FlutterPlugin
 import com.tiktok.open.sdk.auth.AuthApi
 import com.tiktok.open.sdk.auth.AuthRequest
 import com.tiktok.open.sdk.auth.utils.PKCEUtils
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
 
 
 class MainActivity: FlutterActivity() {
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+
+
+    // ATTENTION: This was auto-generated to handle app links.
+    val appLinkIntent: Intent = intent
+    val appLinkAction: String? = appLinkIntent.action
+    val appLinkData: Uri? = appLinkIntent.data
+
+  }
 override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
     super.configureFlutterEngine(flutterEngine)
 

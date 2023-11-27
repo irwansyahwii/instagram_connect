@@ -1,0 +1,11 @@
+{
+  "applinks": {
+      "apps": [],
+      "details": [
+           {
+             "appID": "YY8F8FMUG3.com.ice.instagramconnect",
+             "paths": [ "*"]
+           }
+       ]
+   }
+}

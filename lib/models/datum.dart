@@ -1,4 +1,5 @@
-import 'package:instagram_connect/models/value.dart';
+
+import 'package:com.ice.instagramconnect/models/value.dart';
 
 class Datum {
     String name;

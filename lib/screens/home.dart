@@ -1,5 +1,5 @@
+import 'package:com.ice.instagramconnect/instagram_model.dart';
 import 'package:flutter/material.dart';
-import 'package:instagram_connect/instagram_model.dart';
 
 class Home extends StatelessWidget {
   @override

@@ -1,4 +1,5 @@
-import 'package:instagram_connect/models/datum.dart';
+
+import 'package:com.ice.instagramconnect/models/datum.dart';
 
 class IgUserInsights {
     List<Datum> data;

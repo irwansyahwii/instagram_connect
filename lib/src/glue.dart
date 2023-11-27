@@ -1,4 +1,5 @@
-import 'package:instagram_connect/src/messages.g.dart';
+
+import 'package:com.ice.instagramconnect/src/messages.g.dart';
 
 final ExampleHostApi _api = ExampleHostApi();
 

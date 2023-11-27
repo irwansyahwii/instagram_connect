@@ -1,7 +1,7 @@
+import 'package:com.ice.instagramconnect/widgets/insta_profile_picture.dart';
+import 'package:com.ice.instagramconnect/widgets/num_and_text_column.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:instagram_connect/widgets/insta_profile_picture.dart';
-import 'package:instagram_connect/widgets/num_and_text_column.dart';
 
 class ProfileSection extends StatelessWidget {
 

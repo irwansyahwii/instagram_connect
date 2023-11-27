@@ -1,6 +1,6 @@
+import 'package:com.ice.instagramconnect/models/ig_media.dart';
+import 'package:com.ice.instagramconnect/widgets/story_circle.dart';
 import 'package:flutter/widgets.dart';
-import 'package:instagram_connect/models/ig_media.dart';
-import 'package:instagram_connect/widgets/story_circle.dart';
 
 class StoryCard extends StatelessWidget {
   final IgMedia igMedia;

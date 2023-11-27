@@ -1,9 +1,9 @@
+import 'package:com.ice.instagramconnect/models/ig_media.dart';
+import 'package:com.ice.instagramconnect/models/ig_user.dart';
+import 'package:com.ice.instagramconnect/models/instagram_constant.dart';
+import 'package:com.ice.instagramconnect/providers/instagram_insights_provider.dart';
+import 'package:com.ice.instagramconnect/providers/instagram_user_provider.dart';
 import 'package:get/get.dart';
-import 'package:instagram_connect/models/ig_media.dart';
-import 'package:instagram_connect/models/ig_user.dart';
-import 'package:instagram_connect/models/instagram_constant.dart';
-import 'package:instagram_connect/providers/instagram_insights_provider.dart';
-import 'package:instagram_connect/providers/instagram_user_provider.dart';
 
 enum ScreenStatus {loading, ready}
 class InstagramInsightsController extends GetxController {

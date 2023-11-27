@@ -2,11 +2,15 @@ PODS:
   - Flutter (1.0.0)
   - flutter_webview_plugin (0.0.1):
     - Flutter
-  - tiktok_sdk_v2 (0.0.1):
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - path_provider_foundation (0.0.1):
     - Flutter
-    - TikTokOpenAuthSDK (~> 2.2.0)
-    - TikTokOpenSDKCore (~> 2.2.0)
-    - TikTokOpenShareSDK (~> 2.2.0)
+    - FlutterMacOS
+  - sqflite (0.0.3):
+    - Flutter
+    - FMDB (>= 2.7.5)
   - TikTokOpenAuthSDK (2.2.0):
     - TikTokOpenAuthSDK/Auth (= 2.2.0)
     - TikTokOpenSDKCore (= 2.2.0)
@@ -24,19 +28,28 @@ PODS:
     - Flutter
   - url_launcher_ios (0.0.1):
     - Flutter
+  - video_player_avfoundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
   - webview_flutter_wkwebview (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_webview_plugin (from `.symlinks/plugins/flutter_webview_plugin/ios`)
-  - tiktok_sdk_v2 (from `.symlinks/plugins/tiktok_sdk_v2/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - sqflite (from `.symlinks/plugins/sqflite/ios`)
+  - TikTokOpenAuthSDK
+  - TikTokOpenSDKCore
+  - TikTokOpenShareSDK
   - uni_links (from `.symlinks/plugins/uni_links/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
+  - video_player_avfoundation (from `.symlinks/plugins/video_player_avfoundation/darwin`)
   - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
 SPEC REPOS:
   trunk:
+    - FMDB
     - TikTokOpenAuthSDK
     - TikTokOpenSDKCore
     - TikTokOpenShareSDK
@@ -46,26 +59,33 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_webview_plugin:
     :path: ".symlinks/plugins/flutter_webview_plugin/ios"
-  tiktok_sdk_v2:
-    :path: ".symlinks/plugins/tiktok_sdk_v2/ios"
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  sqflite:
+    :path: ".symlinks/plugins/sqflite/ios"
   uni_links:
     :path: ".symlinks/plugins/uni_links/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
+  video_player_avfoundation:
+    :path: ".symlinks/plugins/video_player_avfoundation/darwin"
   webview_flutter_wkwebview:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_webview_plugin: ed9e8a6a96baf0c867e90e1bce2673913eeac694
-  tiktok_sdk_v2: d02d8f2739c8824dda0f8a8b314e8f8720032b39
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
+  sqflite: 31f7eba61e3074736dff8807a9b41581e4f7f15a
   TikTokOpenAuthSDK: 171f5768f0ee45f0afa668bfa6b4805e6553189f
   TikTokOpenSDKCore: 7cf1784799d40cc33fb70d5c314603ae4f49ecb6
   TikTokOpenShareSDK: 2612b9ff5ed93c6b3ef81a798ce803a838ec3fa8
   uni_links: d97da20c7701486ba192624d99bffaaffcfc298a
   url_launcher_ios: 68d46cc9766d0c41dbdc884310529557e3cd7a86
+  video_player_avfoundation: e9e6f9cae7d7a6d9b43519b0aab382bca60fcfd1
   webview_flutter_wkwebview: 2e2d318f21a5e036e2c3f26171342e95908bd60a
 
-PODFILE CHECKSUM: 70d9d25280d0dd177a5f637cdb0f0b0b12c6a189
+PODFILE CHECKSUM: c5523e9deab9da8d0efa2dd94dc507446c9db8d8
 
 COCOAPODS: 1.13.0

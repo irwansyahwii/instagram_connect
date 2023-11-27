@@ -1,6 +1,6 @@
+import 'package:com.ice.instagramconnect/screens/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-import 'package:instagram_connect/screens/home_view.dart';
 import 'models/instagram_constant.dart';
 import 'instagram_model.dart';
 

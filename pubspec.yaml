@@ -1,4 +1,4 @@
-name: instagram_connect
+name: com.ice.instagramconnect
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -44,7 +44,9 @@ dependencies:
   flutter_profile_picture: ^2.0.0
   dashed_circle: ^0.0.2
   pigeon: ^13.0.0
-  tiktok_sdk_v2: ^0.0.2
+  cloudinary_flutter: ^1.0.0
+  cloudinary_url_gen: ^1.0.0  
+  image_picker: ^1.0.4
 
 dev_dependencies:
   flutter_test:
