@@ -1,4 +1,3 @@
-import 'dart:html';
 
 class LoginScreenModel {
   String? _selectedImagePath;

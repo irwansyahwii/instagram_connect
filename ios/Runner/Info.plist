@@ -5,7 +5,6 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>tiktokopensdk</string>
-		<string>tiktoksharesdk</string>
 		<string>snssdk1180</string>
 		<string>snssdk1233</string>
 	</array>
@@ -15,14 +14,14 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
+			<string>None</string>
 			<key>CFBundleURLName</key>
-			<string>id.ice</string>
+			<string>TikTok</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>www.ice.id</string>
+				<string>awx69ixwylhnmp57</string>
 			</array>
-		</dict>
+		</dict>		
 	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>

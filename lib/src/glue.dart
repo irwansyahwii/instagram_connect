@@ -33,7 +33,7 @@ final TiktokSDKApi _tiktokSDKApi = TiktokSDKApi();
 
 Future<void> setupTiktokSDK() async {
   try {
-    await _tiktokSDKApi.setup('awuq84d134acknn2');
+    await _tiktokSDKApi.setup('awx69ixwylhnmp57');
   } catch (e) {
     print(e);
   }
@@ -48,7 +48,7 @@ Future<TikTokLoginResult> loginTiktok(List<String> permissions,
   } catch (e) {
     print(e);
 
-    return TikTokLoginResult(status: TikTokLoginStatus.error, grantedPermissions: [], scopeName: "");
+    return TikTokLoginResult(status: TikTokLoginStatus.error, errorMessage: e.toString(), grantedPermissions: [], scopeName: "");
   }
 
 }

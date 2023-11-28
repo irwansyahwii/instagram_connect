@@ -4,11 +4,13 @@ import 'package:com.ice.instagramconnect/controllers/login_screen_controller.dar
 import 'package:com.ice.instagramconnect/models/instagram_constant.dart';
 import 'package:com.ice.instagramconnect/src/glue.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginScreen extends StatelessWidget {
 
-  final LoginScreenController controller = LoginScreenController();
+  // final LoginScreenController controller = LoginScreenController();
+  final LoginScreenController controller = Get.find();
 
   Widget instaLoginButton(BuildContext context){
     return ElevatedButton(onPressed: () {        
@@ -27,7 +29,7 @@ class LoginScreen extends StatelessWidget {
         //     TikTokPermissionType.userInfoBasic            
         //     }, browserAuthEnabled: true, redirectUri: "https://www.ice.id");
 
-        final result = await loginTiktok(["user.info.basic"], "ice://login", false);
+        final result = await loginTiktok(["user.info.basic", "user.info.profile"], "https://www.ice.id/login-callback/", false);
 
         print(result);
         
