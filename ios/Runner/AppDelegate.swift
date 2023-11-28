@@ -25,22 +25,22 @@ import TikTokOpenSDKCore
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
     
-//   override func application(_ app: UIApplication,open url: URL,
-//                         options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-////            if (TikTokURLHandler.handleOpenURL(url)) {
-////                return true
-////            }
-//            return true
-//        }
+   override func application(_ app: UIApplication,open url: URL,
+                         options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+            if (TikTokURLHandler.handleOpenURL(url)) {
+                return true
+            }
+            return true
+        }
     
-//    override func application(_ application: UIApplication,
-//                         continue userActivity: NSUserActivity,
-//                         restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-////            if (TikTokURLHandler.handleOpenURL(userActivity.webpageURL)) {
-////                return true
-////            }
-//            return true
-//        }
+    override func application(_ application: UIApplication,
+                         continue userActivity: NSUserActivity,
+                         restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+            if (TikTokURLHandler.handleOpenURL(userActivity.webpageURL)) {
+                return true
+            }
+            return true
+        }
 
     
     
@@ -91,24 +91,28 @@ private class TiktokSDKApiImplementation : TiktokSDKApi {
         /* Step 2 */
         authRequest.send { response in
             /* Step 3 */
-            let authResponse = response as? TikTokAuthResponse;
+//            let authResponse = response as? TikTokAuthResponse;
+            guard let authResponse = response as? TikTokAuthResponse else { return }
             
-            if authResponse?.errorCode == .noError {
+            if authResponse.errorCode == .noError {
                 
 //                print("Auth code: \(String(describing: authResponse?.authCode))")
                 
-//                completion(Result.success(TikTokLoginResult(status: TikTokLoginStatus.success, grantedPermissions: authResponse?.grantedPermissions, scopeName: "")))
+                completion(Result.success(TikTokLoginResult(status: TikTokLoginStatus.success,
+                                                            authCode: authResponse.authCode,
+                                                            codeVerifier: authRequest.pkce.codeVerifier,
+                                                            grantedPermissions: [], scopeName: "")))
                 
-//                completion(.success(
-//                    TikTokLoginResult(status: TikTokLoginStatus.success, grantedPermissions: authResponse?.grantedPermissions, scopeName: "")))
                 
             } else {
-                print("Authorization Failed! error: \(String(describing: authResponse?.error)), error desc: \(String(describing: authResponse?.description))")
+                print("Authorization Failed! error: \(String(describing: authResponse.error)), error desc: \(String(describing: authResponse.description))")
                     
-//                completion(.failure(authResponse?.description))
+                completion(Result.failure(FlutterError(code: String(describing: authResponse.errorCode) , message: authResponse.error, details: authResponse.errorDescription)))
             }
             
         }
+        
+
 
     }
     
